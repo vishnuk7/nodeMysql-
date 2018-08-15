@@ -8,23 +8,40 @@ const db = mysql.createConnection({
   host:'localhost',
   user:'root',
   password:'',
-  // database:'nodemysql'
+  database:'nodemysql'
 });
 
 //conect
 db.connect((err)=>{
+  if(err){ 
+    throw err;
+  }
   console.log("MySql Connected ...");
 });
 
-//Create DB
+// Create DB
 app.get('/createdb',(req,res)=>{
   let sql = 'CREATE DATABASE nodemysql';
   db.query(sql,(err,result)=>{
-    if(err) throw err;
+    if(err){ 
+      throw err;
+    }
     console.log(result);
     res.send('Database Created');
   });
-})
+});
+
+//Create Table
+app.get('/createposttable',(req,res)=>{
+  let sql = 'CREATE TABLE posts(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY(id) )';
+  db.query(sql,(err,result)=>{
+    if(err){
+      throw err;
+    }
+    console.log(result);
+    res.send("Table is created");
+  })
+});
 
 app.listen('3000',()=>{
   console.log("Server started on 3000");
