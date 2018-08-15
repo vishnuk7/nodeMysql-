@@ -53,6 +53,15 @@ app.get('/addpost1',(req,res) =>{
   })
 });
 
+//Fetching the Data
+app.get('/select',(req,res)=>{
+  let sql = 'SELECT * FROM posts';
+  let query = db.query(sql,(err,result)=>{
+    console.log(result);
+    res.send("Fetching the data from Database");
+  })
+})
+
 app.listen('3000',()=>{
   console.log("Server started on 3000");
 });
