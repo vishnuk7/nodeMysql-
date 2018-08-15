@@ -43,6 +43,16 @@ app.get('/createposttable',(req,res)=>{
   })
 });
 
+//Insert Post
+app.get('/addpost1',(req,res) =>{
+  let post = {title:'Post One',body:'This is the post number one'}
+  let sql = 'INSERT INTO posts SET ?';
+  let query = db.query(sql,post,(err, result)=>{
+    console.log(result);
+    res.send("Post one is created");
+  })
+});
+
 app.listen('3000',()=>{
   console.log("Server started on 3000");
 });
