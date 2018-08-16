@@ -103,6 +103,15 @@ app.get('/updatepost/:id',(req,res)=>{
   });
 });
 
+//Delete Post
+app.get('/deletepost/:id',(req,res)=>{
+  let sql = `DELETE FROM post WHERE id  = ${req.params.id}`;
+  let query = db.query(sql,(err,result)=>{
+    if(err) throw err;
+    console.log(result);
+    res.send("Delete Post")
+  })
+})
 
 
 app.listen('3000',()=>{
