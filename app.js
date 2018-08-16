@@ -92,6 +92,17 @@ app.get('/getpost/:id',(req,res)=>{
   });
 });
 
+//Update
+app.get('/updatepost/:id',(req,res)=>{
+  let newTitle = 'Update Title';
+  let sql = `UPDATE posts SET title=${newTitle} WHERE id = ${req.params.id}`;
+  let query = db.query(sql,(err,result)=>{
+    if (err) throw err;
+    console.log(result);
+    res.send("Post Update ");
+  });
+});
+
 
 
 app.listen('3000',()=>{
