@@ -53,6 +53,26 @@ app.get('/addpost1',(req,res) =>{
   })
 });
 
+//Insert data2
+app.get('/addpost2',(req,res) =>{
+  let post = {title:'Post Two',body:'This is the post number two'}
+  let sql = 'INSERT INTO posts SET ?';
+  let query = db.query(sql,post,(err, result)=>{
+    console.log(result);
+    res.send("Post one is created");
+  })
+});
+
+//Insert data3
+app.get('/addpost3',(req,res) =>{
+  let post = {title:'Post Three',body:'This is the post number three'}
+  let sql = 'INSERT INTO posts SET ?';
+  let query = db.query(sql,post,(err, result)=>{
+    console.log(result);
+    res.send("Post one is created");
+  })
+});
+
 //Fetching the Data
 app.get('/select',(req,res)=>{
   let sql = 'SELECT * FROM posts';
@@ -60,7 +80,7 @@ app.get('/select',(req,res)=>{
     console.log(result);
     res.send("Fetching the data from Database");
   })
-})
+});
 
 app.listen('3000',()=>{
   console.log("Server started on 3000");
